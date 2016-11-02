@@ -1,6 +1,5 @@
 var http = require('http');
 var fs = require('fs');
-var io = require('socket.io').listen(server);
 
 var server = http.createServer(function(req, res){
 	fs.readFile('./index_socket.html', 'utf-8', function(error, content){
@@ -8,6 +7,8 @@ var server = http.createServer(function(req, res){
 		res.end(content);
 	});
 });
+
+var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function(socket, username){
 	// when client connect, send message
